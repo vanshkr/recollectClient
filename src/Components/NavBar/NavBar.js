@@ -19,7 +19,7 @@ const Navbar = () => {
     dispatch({ type: actionType.LOGOUT });
 
     history.push('/');
-    location.reload();
+    window.location.reload(true);
     setUser(null);
   };
   const handleResize = () => {
