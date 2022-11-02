@@ -49,6 +49,9 @@ export const getPostsBySearch = (searchQuery) => async(dispatch)=>{
 };
 
 export const createPost = (post,history)=> async(dispatch)=>{
+    const old = post.tags;
+    const ne = old.map(p=> p.toLowerCase());
+    post.tags = ne;
     try {
         dispatch({type:START_LOADING});
         const {data} = await api.createPost(post);
@@ -61,6 +64,9 @@ export const createPost = (post,history)=> async(dispatch)=>{
 };
 
 export const updatePost = (id,post)=> async(dispatch)=>{
+    const old = post.tags;
+    const ne = old.map(p=> p.toLowerCase());
+    post.tags = ne;
     try {
         const {data} = await api.updatePost(id,post);
         
