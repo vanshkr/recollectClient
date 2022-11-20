@@ -20,7 +20,7 @@ const Post = ({post,setCurrentId})=>{
       {
         return post.likes.find((like)=> like === (user?.result?.sub || user?.result?._id))
         ?(
-          <><ThumbUpAltIcon fontSize='small'/>&nbsp;{post.likes.length>2 ? `You and ${post.likes.length-1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : '' }`}  
+          <><ThumbUpAltIcon fontSize='small'/>&nbsp;{post.likes.length>=2 ? `You and ${post.likes.length-1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : '' }`}  
           </>
         ):(
           <><ThumbUpAltOutlinedIcon fontSize='small'/>&nbsp;{post.likes.length}{post.likes.length === 1 ? 'Like': 'Likes'}
@@ -56,6 +56,7 @@ const Post = ({post,setCurrentId})=>{
         <CardActions className={classes.cardActions}>
           <Button size="small" color="primary" disabled={!user?.result} onClick={()=>dispatch(likePost(post._id))}><Likes/></Button>
           <Button size="small" color="primary" onClick={openPost}><InfoOutlinedIcon fontSize='small'/></Button>
+          
           
           {(user?.result?.sub === post?.creator || user?.result?._id === post?.creator) && (<Button size="small" color="primary" onClick={()=>dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /></Button>)}
         </CardActions>

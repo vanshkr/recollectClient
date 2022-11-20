@@ -12,6 +12,7 @@ export const getPost = (id) => async (dispatch) => {
     }
 };
 
+
 export const getPosts = (page)=> async(dispatch)=>{
     try {
         dispatch({type:START_LOADING});
